@@ -41,6 +41,43 @@ Replication and extension of **Baio & Blangiardo (2010)** using PyMC v5.  The pr
 - **Covariate model**: stadium quality and travel fatigue are the dominant drivers; day-of-week effects are small and largely non-significant.
 - **Generalisation** (2022/23 season): home-advantage magnitude and team-ranking patterns replicate well, with minor shifts reflecting squad changes over 15 years.
 
+### Season simulation — 2007/08 (Basic vs Mixture)
+
+Predicted final-season points for a representative subset of clubs (top 6 + bottom 3).  The Mixture model consistently tracks observed points more closely.
+
+| Club | Observed | Basic | Mixture |
+|------|:---:|:---:|:---:|
+| Internazionale | 85 | 76 | 81 |
+| Roma | 82 | 72 | 76 |
+| Juventus | 72 | 66 | 69 |
+| Fiorentina | 66 | 60 | 62 |
+| AC Milan | 64 | 59 | 61 |
+| Udinese | 57 | 52 | 54 |
+| … | … | … | … |
+| Livorno | 30 | 39 | 36 |
+| Empoli | 27 | 38 | 34 |
+| Reggina | 25 | 36 | 33 |
+| **Total MAE** | — | **24.20** | **19.14** |
+
+> **Note**: per-model comparisons for the Contribution models (Team Home and Covariate) are in `notebooks/03_contributions_2007-08.ipynb`, where the full CovariateModel results are shown alongside cross-validation (WAIC / LOO).
+
+### Season simulation — 2022/23 (Basic vs Mixture)
+
+The Mixture model generalises well: 15.9 % lower total MAE than Basic on the held-out 2022/23 season (vs 20.9 % on 2007/08).
+
+| Club | Observed | Basic | Mixture |
+|------|:---:|:---:|:---:|
+| Napoli | 90 | 75 | 78 |
+| Lazio | 74 | 66 | 68 |
+| Juventus | 72 | 63 | 65 |
+| Internazionale | 72 | 67 | 67 |
+| AC Milan | 70 | 62 | 63 |
+| Atalanta | 64 | 61 | 61 |
+| Roma | 63 | 57 | 59 |
+| … | … | … | … |
+| Sampdoria | 19 | 30 | 28 |
+| **Total MAE** | — | **18.25** | **15.35** |
+
 ### Team attack vs defence — Basic model (2007/08)
 
 Roma and Juventus sit firmly in the *Good Attack / Good Defence* quadrant; Empoli, Livorno, and Reggina occupy the opposite corner.  The scatter reflects the actual 2007/08 Serie A standings closely.
@@ -55,13 +92,13 @@ The three-group mixture prior sharpens team separation: the defence axis range r
 
 ### Contribution 1 — Team-specific home advantage (2007/08)
 
-Posterior mean home advantages per club, compared to the Basic model's single scalar estimate (red dashed line).  Clubs at the bottom of the chart (Livorno, Torino, Siena) consistently show the weakest home effect; those at the top benefit substantially more from playing at home.
+Posterior mean home advantages per club, compared to the Basic model's single scalar estimate (red dashed line).  Clubs with the weakest home effects (Livorno, Torino, Siena) fall well below the population mean; those with the strongest (Atalanta, Parma, Roma) gain substantially more from playing at home.
 
 ![Team-specific vs fixed home advantage](assets/team_home_advantage_comparison.png)
 
 ### Contribution 2 — Fully standardised covariate model (2007/08)
 
-All predictors are z-score standardised, so the posterior distributions are directly comparable.  The stadium quality index (top-left panel) shows a clear positive relationship with home advantage (top-centre scatter).  Day-of-week effects (Fri/Sat/Sun panels) are small and centred on zero, consistent with weak evidence of scheduling effects in this era of Serie A.
+All predictors are z-score standardised, so the posterior distributions are directly comparable.  The top-left panel shows the posterior for the stadium quality coefficient; the top-centre scatter confirms the positive relationship between stadium quality and team-level home advantage.  Day-of-week effects (Fri/Sat/Sun panels) are small and centred on zero, consistent with weak evidence of scheduling effects in this era of Serie A.
 
 ![Covariate effects — standardised](assets/covariate_effects_standardised.png)
 
@@ -118,7 +155,7 @@ bayesian-football-prediction/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/farmandbt/bayesian-football-prediction.git
+git clone https://github.com/farmand-bt/bayesian-football-prediction.git
 cd bayesian-football-prediction
 
 # 2. Create and activate a virtual environment (recommended)
