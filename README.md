@@ -9,7 +9,7 @@ Replication and extension of **Baio & Blangiardo (2010)** using PyMC v5.  The pr
 ## Base paper
 
 > Baio, G., & Blangiardo, M. (2010).  
-> **Bayesian hierarchical model for the prediction of football results.**  
+> **[Bayesian hierarchical model for the prediction of football results.](references/baio_blangiardo_2010.pdf)**  
 > *Journal of Applied Statistics*, 37(2), 253–264.  
 > https://doi.org/10.1080/02664760802684177
 
@@ -40,6 +40,30 @@ Replication and extension of **Baio & Blangiardo (2010)** using PyMC v5.  The pr
 - **Team-specific home advantage**: significant cross-club variation; large, high-utilisation stadiums correlate with stronger home effects.
 - **Covariate model**: stadium quality and travel fatigue are the dominant drivers; day-of-week effects are small and largely non-significant.
 - **Generalisation** (2022/23 season): home-advantage magnitude and team-ranking patterns replicate well, with minor shifts reflecting squad changes over 15 years.
+
+### Team attack vs defence — Basic model (2007/08)
+
+Roma and Juventus sit firmly in the *Good Attack / Good Defence* quadrant; Empoli, Livorno, and Reggina occupy the opposite corner.  The scatter reflects the actual 2007/08 Serie A standings closely.
+
+![Team effects — Basic model 2007/08](assets/team_effects_basic_2007-08.png)
+
+### Team attack vs defence — Mixture model (2007/08)
+
+The three-group mixture prior sharpens team separation: the defence axis range roughly doubles compared to the Basic model, and Internazionale's defensive superiority becomes more pronounced.  This tighter clustering underlies the 20.9 % MAE improvement.
+
+![Team effects — Mixture model 2007/08](assets/team_effects_mixture_2007-08.png)
+
+### Contribution 1 — Team-specific home advantage (2007/08)
+
+Posterior mean home advantages per club, compared to the Basic model's single scalar estimate (red dashed line).  Clubs at the bottom of the chart (Livorno, Torino, Siena) consistently show the weakest home effect; those at the top benefit substantially more from playing at home.
+
+![Team-specific vs fixed home advantage](assets/team_home_advantage_comparison.png)
+
+### Contribution 2 — Fully standardised covariate model (2007/08)
+
+All predictors are z-score standardised, so the posterior distributions are directly comparable.  The stadium quality index (top-left panel) shows a clear positive relationship with home advantage (top-centre scatter).  Day-of-week effects (Fri/Sat/Sun panels) are small and centred on zero, consistent with weak evidence of scheduling effects in this era of Serie A.
+
+![Covariate effects — standardised](assets/covariate_effects_standardised.png)
 
 ---
 
@@ -72,6 +96,12 @@ bayesian-football-prediction/
 │   ├── 02_replication_2007-08.ipynb          # Basic vs Mixture, 2007/08
 │   ├── 03_contributions_2007-08.ipynb        # Contributions 1 & 2, enhanced 2007/08 data
 │   └── 04_generalisation_2022-23.ipynb       # Generalisation to 2022/23 season
+│
+├── assets/                     # Figures embedded in this README
+│   ├── team_effects_basic_2007-08.png
+│   ├── team_effects_mixture_2007-08.png
+│   ├── team_home_advantage_comparison.png
+│   └── covariate_effects_standardised.png
 │
 ├── references/
 │   └── baio_blangiardo_2010.pdf   # Base paper (Baio & Blangiardo 2010)
