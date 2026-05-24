@@ -2,6 +2,8 @@
 
 Replication and extension of **Baio & Blangiardo (2010)** using PyMC v5.  The project builds a family of four Bayesian hierarchical models for Italian Serie A match results, replicated from the original paper and then extended with two original contributions: team-specific home advantage and a composite covariate model for home-advantage drivers.  All inference is performed with MCMC (NUTS), diagnostics via ArviZ, and results validated against multiple seasons.
 
+> **Academic context**: submitted as a course project for *Probabilistic Modelling* at **Leuphana University of Lüneburg**, Summer Semester 2025 (July 2025).
+
 ---
 
 ## Base paper
@@ -70,6 +72,9 @@ bayesian-football-prediction/
 │   ├── 02_replication_2007-08.ipynb          # Basic vs Mixture, 2007/08
 │   ├── 03_contributions_2007-08.ipynb        # Contributions 1 & 2, enhanced 2007/08 data
 │   └── 04_generalisation_2022-23.ipynb       # Generalisation to 2022/23 season
+│
+├── references/
+│   └── baio_blangiardo_2010.pdf   # Base paper (Baio & Blangiardo 2010)
 │
 ├── pre-restructured/           # Original Colab submission files (legacy reference)
 ├── requirements.txt
