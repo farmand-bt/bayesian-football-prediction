@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific
+claude_code_prompt.md
+*.netcdf
+*.nc
+# Note: .xlsx data files are intentionally committed (open-source public data)

@@ -1,0 +1,10 @@
+pymc>=5.0
+pytensor
+arviz
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+openpyxl
+jupyter
